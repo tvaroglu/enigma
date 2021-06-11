@@ -1,9 +1,14 @@
 class KeyGen
 
-  def initialize
-    @key = Array.new
-    @key << rand(0..9).to_s until @key.length == 5
-    @key = @key.join
+  def initialize(key=nil)
+    unless key.class == String && key.length == 5 && !(
+      key.to_s.split('').all? { |char| char.to_i == 0 })
+      @key = Array.new
+      @key << rand(0..9).to_s until @key.length == 5
+      @key = @key.join
+    else
+      @key = key
+    end
     @offsets = ''
   end
 
@@ -12,7 +17,8 @@ class KeyGen
   end
 
   def return_offsets(date=Date.today)
-    unless date.class == String && date.length == 6 && !(date.to_s.split('').all? { |char| char.to_i == 0 })
+    unless date.class == String && date.length == 6 && !(
+      date.to_s.split('').all? { |char| char.to_i == 0 })
       date = Date.parse((Date.today).to_s)
       date = date.strftime("%d") + date.strftime("%m") + date.strftime("%y")
     end
