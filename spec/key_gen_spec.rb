@@ -19,23 +19,27 @@ RSpec.describe KeyGen do
 
   it 'can return date offsets based on date of message transmission' do
     key = KeyGen.new
+    allow(Date).to receive(:today).and_return('2021-06-10')
     today = Date.today
-    date = '040895'
+    another_day = '040895'
 
     expected = key.reduce_date(today)
     expect(expected).to eq('5641')
 
-    expected = key.reduce_date(date)
+    expected = key.reduce_date
+    expect(expected).to eq('5641')
+
+    expected = key.reduce_date(another_day)
     expect(expected).to eq('1025')
   end
 
   it 'can return total shifts based on key and date offsets' do
-    key = KeyGen.new
-    allow(key).to receive(:key).and_return('02715')
-    allow(key).to receive(:reduce_date).and_return('1025')
+    mock_key_gen = instance_double('mock_key_gen', key: '02715')
+    allow(mock_key_gen).to receive(:reduce_date).and_return('1025')
+    allow(mock_key_gen).to receive(:return_offsets).and_call_original
 
-    expected = key.return_offsets
-
+    expected = mock_key_gen.return_offsets
+    # require "pry"; binding.pry
     expect(expected.class).to eq(Hash)
     expect(expected.keys.length).to eq(4)
     expect(expected['A']).to eq(3)
