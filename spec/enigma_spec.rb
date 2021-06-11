@@ -29,7 +29,7 @@ RSpec.describe Enigma do
     expect(encryption.keys.length).to eq(3)
     expect(encryption.values.length).to eq(3)
 
-    # expect(encryption[:encryption]).to eq('keder ohulw!')
+    expect(encryption[:encryption]).to eq('keder ohulw!')
     expect(encryption[:key]).to eq(key.reveal)
     expect(encryption[:date]).to eq(date)
   end

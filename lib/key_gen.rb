@@ -20,8 +20,7 @@ class KeyGen
   def set_offsets(date=Date.today)
     unless date.class == String && date.length == 6 && !(
       date.to_s.split('').all? { |char| char.to_i == 0 })
-      date = Date.parse((Date.today).to_s)
-      date = date.strftime("%d") + date.strftime("%m") + date.strftime("%y")
+      date = Date.parse((Date.today).to_s).strftime('%d%m%y')
     end
     @date = date
     (date.to_i**2).to_s[-4..-1]
