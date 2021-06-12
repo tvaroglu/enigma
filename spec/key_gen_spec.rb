@@ -4,13 +4,14 @@ RSpec.describe KeyGen do
 
   context '#initialize' do
     it 'with default param' do
+      allow(Date).to receive(:today).and_return('2021-06-11')
       key = KeyGen.new
 
       expect(key.class).to eq(KeyGen)
 
       expect(key.reveal.class).to eq(String)
       expect(key.reveal.length).to eq(5)
-      expect(key.date).to eq(Date.today)
+      expect(key.date).to eq('110621')
     end
 
     it 'with passed in arg' do
@@ -43,6 +44,7 @@ RSpec.describe KeyGen do
         expect(key1.reveal).not_to eq(key2.reveal)
       end
   end
+
 
   context 'date offset and total shifts' do
     it 'can return date offsets based on date of message transmission' do

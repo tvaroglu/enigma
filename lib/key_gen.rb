@@ -10,7 +10,7 @@ class KeyGen
     else
       @key = key
     end
-    @date = Date.today
+    @date = Date.parse((Date.today).to_s).strftime('%d%m%y')
   end
 
   def reveal
@@ -20,10 +20,10 @@ class KeyGen
   def set_offsets(date=Date.today)
     unless date.class == String && date.length == 6 && !(
       date.to_s.split('').all? { |char| char.to_i == 0 })
-      date = Date.parse((Date.today).to_s).strftime('%d%m%y')
+      date = @date
     end
     @date = date
-    (date.to_i**2).to_s[-4..-1]
+    (@date.to_i**2).to_s[-4..-1]
   end
 
   def return_shifts
