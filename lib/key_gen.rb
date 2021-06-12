@@ -1,27 +1,34 @@
 class KeyGen
+  attr_reader :date
 
-  def initialize
-    @key = Array.new
-    @key << rand(0..9).to_s until @key.length == 5
-    @key = @key.join
-    @offsets = ''
+  def initialize(key=nil)
+    unless key.class == String && key.length == 5 && !(
+      key.to_s.split('').all? { |char| char.to_i == 0 })
+      @key = Array.new
+      @key << rand(0..9).to_s until @key.length == 5
+      @key = @key.join
+    else
+      @key = key
+    end
+    @date = Date.parse((Date.today).to_s).strftime('%d%m%y')
   end
 
   def reveal
-    [@key, @offsets]
+    @key
   end
 
-  def return_offsets(date=Date.today)
-    unless date.class == String && date.length == 6 && !(date.to_s.split('').all? { |char| char.to_i == 0 })
-      date = Date.parse((Date.today).to_s)
-      date = date.strftime("%d") + date.strftime("%m") + date.strftime("%y")
+  def set_offsets(date=Date.today)
+    unless date.class == String && date.length == 6 && !(
+      date.to_s.split('').all? { |char| char.to_i == 0 })
+      date = @date
     end
-    @offsets = (date.to_i**2).to_s[-4..-1]
+    @date = date
+    (@date.to_i**2).to_s[-4..-1]
   end
 
   def return_shifts
     keys = @key.split('')
-    offsets = @offsets.split('')
+    offsets = set_offsets(@date).split('')
     shifts = {
       :a => keys[0..1].join.to_i + offsets[0].to_i,
       :b => keys[1..2].join.to_i + offsets[1].to_i,
