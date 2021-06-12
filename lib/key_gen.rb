@@ -18,11 +18,10 @@ class KeyGen
   end
 
   def set_offsets(date=Date.today)
-    unless date.class == String && date.length == 6 && !(
+    if date.class == String && date.length == 6 && !(
       date.to_s.split('').all? { |char| char.to_i == 0 })
-      date = @date
+      @date = date
     end
-    @date = date
     (@date.to_i**2).to_s[-4..-1]
   end
 

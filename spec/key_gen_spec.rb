@@ -92,7 +92,6 @@ RSpec.describe KeyGen do
     it "can return total shifts based on key and today's date offsets" do
       key = KeyGen.new
       key.instance_variable_set(:@key, '02715')
-      # key.date stub based on '2021-06-11' as "today's date"
       key.instance_variable_set(:@date, '110621')
 
       expect(key.reveal).to eq('02715')
