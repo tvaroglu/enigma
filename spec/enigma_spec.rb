@@ -34,54 +34,54 @@ RSpec.describe Enigma do
     expect(encryption[:date]).to eq(date)
   end
 
-  xit 'can decrypt a message with a key and date' do
+  it 'can decrypt a message with a key and date' do
     enigma = Enigma.new
     key = KeyGen.new('02715')
     date = '040895'
 
-    encryption = enigma.encrypt('HELLO WORLD!', key.reveal, date)
+    encryption = enigma.encrypt('HELLO_WORLD!', key.reveal, date)
     decryption = enigma.decrypt(encryption[:encryption], encryption[:key], encryption[:date])
 
     expect(decryption.class).to eq(Hash)
     expect(decryption.keys.length).to eq(3)
     expect(decryption.values.length).to eq(3)
 
-    expect(decryption[:decryption]).to eq('hello world!')
+    expect(decryption[:decryption]).to eq('hello_world!')
     expect(decryption[:key]).to eq(key.reveal)
     expect(decryption[:date]).to eq(date)
   end
 
-  xit 'can encrpyt a message without a date (by using Date.today)' do
+  it 'can encrpyt a message without a date (by using Date.today)' do
     enigma = Enigma.new
     key = KeyGen.new('02715')
     # key.date stub based on '2021-06-11' as "today's date"
     key.instance_variable_set(:@date, '110621')
 
-    encryption = enigma.encrypt('HELLO WORLD!', key.reveal)
+    encryption = enigma.encrypt('hello world', key.reveal)
 
     expect(encryption.class).to eq(Hash)
     expect(encryption.keys.length).to eq(3)
     expect(encryption.values.length).to eq(3)
 
-    expect(encryption[:encryption]).to eq('okfavfqdyry!')
+    expect(encryption[:encryption]).to eq('okfavfqdyry')
     expect(encryption[:key]).to eq(key.reveal)
     expect(encryption[:date]).to eq(key.date)
   end
 
-  xit 'can decrypt a message without a date (by using Date.today)' do
+  it 'can decrypt a message without a date (by using Date.today)' do
     enigma = Enigma.new
     key = KeyGen.new('02715')
     # key.date stub based on '2021-06-11' as "today's date"
     key.instance_variable_set(:@date, '110621')
 
-    encryption = enigma.encrypt('HELLO WORLD!', key.reveal)
+    encryption = enigma.encrypt('hello world', key.reveal)
     decryption = enigma.decrypt(encryption[:encryption], encryption[:key])
 
     expect(decryption.class).to eq(Hash)
     expect(decryption.keys.length).to eq(3)
     expect(decryption.values.length).to eq(3)
 
-    expect(decryption[:decryption]).to eq('hello world!')
+    expect(decryption[:decryption]).to eq('hello world')
     expect(decryption[:key]).to eq(key.reveal)
     expect(decryption[:date]).to eq(key.date)
   end
