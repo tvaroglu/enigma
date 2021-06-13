@@ -1,22 +1,23 @@
 require_relative 'enigma'
 
 class FileHandler
-  in_file, out_file, key, date = ARGV
+
+  def self.retrieve_message
+    puts "\nPlease enter a message to encrypt:\n > "
+    message = $stdin.gets.chomp
+  end
 
   def self.write_message(message_file)
     file = File.open(message_file, 'w')
-    puts "\nPlease enter a message to encrypt:\n > "
-    message = $stdin.gets.chomp
-    file.write(message.downcase)
+    file.write(self.retrieve_message.downcase)
     file.close
   end
 
-  def self.encrypt(message_file, encryption_file)
+  def self.encrypt(message_file, encryption_file, key=nil, date=Date.today)
     message = File.open(message_file, 'r')
     text = message.read
     message.close
-    # remove key and date after testing
-    encryption = Enigma.new.encrypt(text, '67929', '130621')
+    encryption = Enigma.new.encrypt(text, key, date)
     file = File.open(encryption_file, 'w')
     file.write(encryption[:encryption])
     file.close

@@ -1,3 +1,5 @@
+require 'date'
+
 class KeyGen
   attr_reader :date
 
