@@ -8,6 +8,7 @@ RSpec.describe FileHandler do
     allow(FileHandler).to receive(:retrieve_message).and_return(message)
     FileHandler.write_message(path)
 
+    expect(FileHandler.retrieve_message).to eq(message)
     message_text = File.open(path, 'r')
     expect(message_text.read).to eq(message)
     message_text.close
