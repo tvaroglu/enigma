@@ -51,23 +51,7 @@ RSpec.describe Enigma do
     expect(decryption[:date]).to eq(date)
   end
 
-  it 'can encrpyt a message without a date (by using Date.today)' do
-    enigma = Enigma.new
-    key = KeyGen.new('02715')
-    message = 'hello world'
-
-    encryption = enigma.encrypt(message, key.reveal)
-
-    expect(encryption.class).to eq(Hash)
-    expect(encryption.keys.length).to eq(3)
-    expect(encryption.values.length).to eq(3)
-
-    expect(encryption[:encryption]).to eq('okfavfqdyry')
-    expect(encryption[:key]).to eq(key.reveal)
-    expect(encryption[:date]).to eq(key.date)
-  end
-
-  it 'can decrypt a message without a date (by using Date.today)' do
+  it 'can encrpyt/decrypt a message without a date (by using Date.today)' do
     enigma = Enigma.new
     key = KeyGen.new('02715')
     message = 'hello_world'
