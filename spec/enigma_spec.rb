@@ -90,7 +90,7 @@ RSpec.describe Enigma do
     expect(decryption[:date]).to eq(encryption[:date])
   end
 
-  xit "can crack a decrypted message with today's date" do
+  it "can crack a decrypted message with today's date" do
     enigma = Enigma.new
     key = KeyGen.new('08304')
     message = 'hello world end'

@@ -56,9 +56,7 @@ class Enigma
   end
 
   def crack(ciphertext, date=Date.today)
-    key_gen = KeyGen.new
-    key_gen.set_offsets(date)
-    cracked = reverse_shifts(ciphertext.to_s.downcase, key_gen.return_shifts)
+    cracked = reverse_shifts(ciphertext.to_s.downcase, date)
     key_gen = KeyGen.new(cracked)
     key_gen.set_offsets(date)
     {
@@ -69,6 +67,13 @@ class Enigma
   end
 
   def reverse_shifts(ciphertext, date)
+    decryption = ''
+    until decryption[-4..-1] == ' end'
+      key = KeyGen.new
+      key.set_offsets(date)
+      decryption = decode(ciphertext, key.return_shifts)
+    end
+    key.reveal
   end
 
 end
