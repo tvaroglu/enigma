@@ -4,16 +4,17 @@ class FileHandler
 
   def self.retrieve_message
     puts "\nPlease enter a message to encrypt:\n > "
-    message = $stdin.gets.chomp
+    message = $stdin.gets.chomp.downcase
   end
 
   def self.write_message(message_file)
     file = File.open(message_file, 'w')
-    file.write(self.retrieve_message.downcase)
+    file.write(self.retrieve_message)
     file.close
   end
 
   def self.encrypt(message_file, encryption_file, key=nil, date=Date.today)
+    self.write_message(message_file)
     message = File.open(message_file, 'r')
     text = message.read
     message.close
