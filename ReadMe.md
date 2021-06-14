@@ -46,6 +46,6 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
 
 
 
-<img width="592" alt="test_output_all.png" src="https://user-images.githubusercontent.com/58891447/121927233-099c5f80-ccfc-11eb-847f-40a8bf01d26b.png">
+<img width="800" alt="test_output_all.png" src="https://user-images.githubusercontent.com/58891447/121927233-099c5f80-ccfc-11eb-847f-40a8bf01d26b.png">
 
-<img width="400" alt="test_output_filehandler.png" src="https://user-images.githubusercontent.com/58891447/121927409-3cdeee80-ccfc-11eb-92e6-f3f936fffb00.png">
+<img width="600" alt="test_output_filehandler.png" src="https://user-images.githubusercontent.com/58891447/121927409-3cdeee80-ccfc-11eb-92e6-f3f936fffb00.png">
