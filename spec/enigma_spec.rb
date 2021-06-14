@@ -76,4 +76,32 @@ RSpec.describe Enigma do
     expect(decryption[:date]).to eq(encryption[:date])
   end
 
+  it 'can crack an encrypted message with a date' do
+    enigma = Enigma.new
+    key = KeyGen.new('08304')
+    message = 'hello world end'
+    date = '291018'
+
+    encryption = enigma.encrypt(message, key.reveal, date)
+    expect(encryption[:encryption]).to eq('vjqtbeaweqihssi')
+
+    cracked = enigma.crack(encryption[:encryption], encryption[:date])
+    expect(cracked[:decryption]).to eq(message)
+    expect(cracked[:key]).to eq(encryption[:key])
+    expect(cracked[:date]).to eq(encryption[:date])
+  end
+
+  it "can crack an encrypted message with today's date" do
+    enigma = Enigma.new
+    key = KeyGen.new('08304')
+    message = 'hello world end'
+
+    encryption = enigma.encrypt(message, key.reveal)
+    cracked = enigma.crack(encryption[:encryption])
+
+    expect(cracked[:decryption]).to eq(message)
+    expect(cracked[:key]).to eq(encryption[:key])
+    expect(cracked[:date]).to eq(encryption[:date])
+  end
+
 end
