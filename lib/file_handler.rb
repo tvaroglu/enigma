@@ -35,4 +35,15 @@ class FileHandler
     "Created '#{File.basename(decryption_file)}' with the key #{decryption[:key]} and date #{decryption[:date]}"
   end
 
+  def self.crack(encryption_file, cracked_file, date=Date.today)
+    encryption = File.open(encryption_file, 'r')
+    ciphertext = encryption.read
+    encryption.close
+    cracked = Enigma.new.crack(ciphertext, date)
+    file = File.open(cracked_file, 'w')
+    file.write(cracked[:decryption])
+    file.close
+    "Created '#{File.basename(cracked_file)}' with the key #{cracked[:key]} and date #{cracked[:date]}"
+  end
+
 end
