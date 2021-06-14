@@ -26,6 +26,31 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
 **Functionality: 4**
 
   - Cracking method and CLI successfully tested and implemented.
+    - Encryption (can be run with or without key and/or date):
+
+      ```bash
+      $ ruby ./lib/encrypt.rb message.txt encrypted.txt 12345
+
+      Please enter a message to encrypt:
+       >
+      hello world end
+      Created 'encrypted.txt' with the key 12345 and date 140621
+      ```
+
+    - Decryption (can be run with or without date):
+
+      ```bash
+      $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 12345
+      Created 'decrypted.txt' with the key 12345 and date 140621
+      ```
+
+    - Cracking (can be run with or without date):
+
+      ```bash
+      $ ruby ./lib/crack.rb encrypted.txt cracked.txt
+      Created 'cracked.txt' with the key 12345 and date 140621
+      ```
+
 
 **Object Oriented Programming: 3**
 
@@ -35,7 +60,7 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
 
 **Ruby Conventions and Mechanics: 4**
 
-  - Classes, methods, and variables are well named so that they clearly communicate their purpose. Code is all properly indented and syntax is consistent. No methods are longer than 10 lines. Most enumerables/data structures chosen are the most efficient tool for a given job, and students can speak as to why those enumerables/data structures were chosen.
+  - Classes, methods, and variables are well named so that they clearly communicate their purpose. Code is all properly indented and syntax is consistent. No methods are longer than 10 lines. Most enumerables/data structures chosen are the most efficient tool for a given job, and student can speak as to why those enumerables/data structures were chosen.
 
 **Test Driven Development: 3.9999**
 

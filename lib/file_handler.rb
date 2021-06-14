@@ -24,7 +24,7 @@ class FileHandler
     "Created '#{File.basename(encryption_file)}' with the key #{encryption[:key]} and date #{encryption[:date]}"
   end
 
-  def self.decrypt(encryption_file, decryption_file, key, date)
+  def self.decrypt(encryption_file, decryption_file, key, date=Date.today)
     encryption = File.open(encryption_file, 'r')
     ciphertext = encryption.read
     encryption.close
