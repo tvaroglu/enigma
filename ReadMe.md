@@ -31,26 +31,26 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
     - Encryption (can be run with or without key and/or date):
 
       ```bash
-      $ ruby ./lib/encrypt.rb message.txt encrypted.txt 12345
+      $ ruby ./lib/encrypt.rb message.txt encrypted.txt 22464
 
       Please enter a message to encrypt:
        >
       DER KRIEG ENDET HEUTE END
-      Created 'encrypted.txt' with the key 12345 and date 140621
+      Created 'encrypted.txt' with the key 22464 and date 150621
       ```
 
     - Decryption (can be run with or without date):
 
       ```bash
-      $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 12345
-      Created 'decrypted.txt' with the key 12345 and date 140621
+      $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 22464
+      Created 'decrypted.txt' with the key 22464 and date 150621
       ```
 
     - Cracking (can be run with or without date):
 
       ```bash
       $ ruby ./lib/crack.rb encrypted.txt cracked.txt
-      Created 'cracked.txt' with the key 12345 and date 140621
+      Created 'cracked.txt' with the key 22464 and date 150621
       ```
 
 
@@ -66,14 +66,14 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
 
 **Test Driven Development: 3.9999**
 
-  - Stubs are used appropriately to ensure testing is more robust (i.e, testing methods that might not otherwise be tested due to factors like randomness or user input), testing is more efficient, and that classes can be tested without relying on functionality from other classes. Student is able to speak as to how stubs are fulfilling the above conditions.
+  - Stubs are used appropriately to ensure testing is more robust (i.e, testing methods that might not otherwise be tested due to factors like randomness or user input), testing is more efficient, and classes can be tested without relying on functionality from other classes. Student is able to speak as to how stubs are fulfilling the above conditions.
   - Test coverage metrics show **99.3%** coverage:
-      - The `retrieve_message` method in the `FileHandler` class collects user input (which writes a message to the `message.txt` file via `gets.chomp`, for the `encrypt.rb` runner file to execute against) is stubbed, which pulls the coverage report below 100%, due to the two lines within the method being omitted due to the stub (one that prints a prompt, the other that collects the user's input).
+      - The `retrieve_message` method in the `FileHandler` class collects user input (which writes a message to the `message.txt` file via `gets.chomp`, for the `encrypt.rb` runner file to execute against) is stubbed, which pulls the coverage report below 100%, due to the two lines within the method being omitted due to the stub (one that prints a prompt, and the other that collects the user's input).
       - Given that the method call (the actual writing of the message) is tested during the CLI encryption/decryption process, coverage could arguably be considered 100%.
-      - Leaving this method unstubbed (to force 100% coverage) prints the prompt during RSpec runs, which is unconventional, and practicing stubs with a marginally sub-100% coverage was deemed a more beneficial learning exercise.
+      - Leaving this method unstubbed (to force 100% coverage) prints the prompt during RSpec runs, which is unconventional, and furthermore, practicing stubs with a marginally sub-100% coverage was deemed a more beneficial learning exercise.
       - Screenshots below to capture testing outputs and previously described paradox:
 
 
-<img width="800" alt="test_output_all.png" src="https://user-images.githubusercontent.com/58891447/121966202-724f0080-cd2b-11eb-8613-04b2b5280944.png">
+<img width="838" alt="test_output_all.png" src="https://user-images.githubusercontent.com/58891447/121966202-724f0080-cd2b-11eb-8613-04b2b5280944.png">
 
-<img width="600" alt="test_output_filehandler.png" src="https://user-images.githubusercontent.com/58891447/121966266-8e52a200-cd2b-11eb-8ca4-becd421b7db0.png">
+<img width="774" alt="test_output_filehandler.png" src="https://user-images.githubusercontent.com/58891447/121966266-8e52a200-cd2b-11eb-8ca4-becd421b7db0.png">
