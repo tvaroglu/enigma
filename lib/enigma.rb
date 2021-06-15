@@ -52,6 +52,13 @@ class Enigma
     }
   end
 
+  def key_iter(key)
+    new_key = []
+    new_key << (key.to_i + 1).to_s
+    new_key.unshift('0') until new_key.join.length == 5
+    new_key.join
+  end
+
   def reverse_shifts(ciphertext, date)
     decryption = ''
     cracked_key = '00001'
@@ -59,7 +66,7 @@ class Enigma
       key = KeyGen.new(cracked_key)
       key.set_offsets(date)
       decryption = encode_decode(ciphertext, key.return_shifts, -1)
-      cracked_key = (cracked_key.to_i + 1).to_s
+      cracked_key = key_iter(cracked_key)
     end
     key.reveal
   end
