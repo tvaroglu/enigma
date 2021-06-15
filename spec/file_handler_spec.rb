@@ -10,15 +10,14 @@ RSpec.describe FileHandler do
   end
 
   it 'can encrypt a message' do
-    allow(FileHandler).to receive(:retrieve_message).and_return(@message)
-    FileHandler.write_message(@message_file)
+    allow($stdin).to receive(:gets).and_return(@message)
+
+    runner = FileHandler.encrypt(@message_file, @encryption_file, @key, @date)
+    expect(runner).to eq("Created '#{File.basename(@encryption_file)}' with the key #{@key} and date #{@date}")
 
     message_text = File.open(@message_file, 'r')
     expect(message_text.read).to eq(@message)
     message_text.close
-
-    runner = FileHandler.encrypt(@message_file, @encryption_file, @key, @date)
-    expect(runner).to eq("Created '#{File.basename(@encryption_file)}' with the key #{@key} and date #{@date}")
 
     encrypted_text = File.open(@encryption_file, 'r')
     decryption = Enigma.new.decrypt(encrypted_text.read, @key, @date)

@@ -3,7 +3,6 @@ require_relative 'enigma'
 class FileHandler
 
   def self.retrieve_message
-    puts "\nPlease enter a message to encrypt:\n > "
     message = $stdin.gets.chomp.downcase
   end
 

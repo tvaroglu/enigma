@@ -64,16 +64,7 @@ This is the repo for Taylor Varoglu's BE Mod1 **Enigma** project.
 
   - Classes, methods, and variables are well named so that they clearly communicate their purpose. Code is all properly indented and syntax is consistent. No methods are longer than 10 lines. Most enumerables/data structures chosen are the most efficient tool for a given job, and student can speak as to why those enumerables/data structures were chosen.
 
-**Test Driven Development: 3.9999**
+**Test Driven Development: 4**
 
   - Stubs are used appropriately to ensure testing is more robust (i.e, testing methods that might not otherwise be tested due to factors like randomness or user input), testing is more efficient, and classes can be tested without relying on functionality from other classes. Student is able to speak as to how stubs are fulfilling the above conditions.
-  - Test coverage metrics show **99.3%** coverage:
-      - The `retrieve_message` method in the `FileHandler` class collects user input (which writes a message to the `message.txt` file via `gets.chomp`, for the `encrypt.rb` runner file to execute against) is stubbed, which pulls the coverage report below 100%, due to the two lines within the method being omitted due to the stub (one that prints a prompt, and the other that collects the user's input).
-      - Given that the method call (the actual writing of the message) is tested during the CLI encryption/decryption process, coverage could arguably be considered 100%.
-      - Leaving this method unstubbed (to force 100% coverage) prints the prompt during RSpec runs, which is unconventional, and furthermore, practicing stubs with a marginally sub-100% coverage was deemed a more beneficial learning exercise.
-      - Screenshots below to capture testing outputs and previously described paradox:
-
-
-<img width="838" alt="test_output_all.png" src="https://user-images.githubusercontent.com/58891447/121966202-724f0080-cd2b-11eb-8613-04b2b5280944.png">
-
-<img width="774" alt="test_output_filehandler.png" src="https://user-images.githubusercontent.com/58891447/121966266-8e52a200-cd2b-11eb-8ca4-becd421b7db0.png">
+  - Test coverage metrics show **100%** coverage.
