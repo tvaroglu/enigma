@@ -57,7 +57,9 @@ RSpec.describe Enigma do
     message = 'hello_world'
 
     encryption = enigma.encrypt(message, key.reveal)
-    # could stub key and date within the encryption process, to ensure known date and keys are returned (this is a good integeration test example, but NOT unit test)
+    # Note, could stub key and date within the encryption process, to ensure
+    #known date and keys are returned (this is a good integeration test example,
+    #but NOT a good unit test)
     decryption = enigma.decrypt(encryption[:encryption], encryption[:key])
 
     expect(decryption[:decryption]).to eq(message)
